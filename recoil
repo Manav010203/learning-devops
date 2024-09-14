@@ -1,0 +1,60 @@
+import { useContext, useState } from "react"
+import { RecoilRoot, useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from "recoil";
+import { CountContext } from "./context";
+import { countAtom, EvenCheck } from "./store/atoms/count";
+
+
+function App() {
+ 
+  
+  return (
+    <div>
+     <RecoilRoot>
+     <Count />
+     </RecoilRoot>
+  </div>
+  )
+}
+function Count(){
+  console.log("count re-rendered");
+  return <div>
+
+    <CountRenderer />
+    <Buttons />
+    
+    
+  </div>
+}
+function CountRenderer(){
+  const count=useRecoilValue(countAtom);
+  return <div>
+    <b>
+    {count}
+    </b>
+   
+
+    <Evencheck />
+  </div>
+}
+function Evencheck(){
+  const isEven=useRecoilValue(EvenCheck);
+  return <div>
+    {(isEven % 2 ==0) ? "it is even" : null}
+  </div>
+}
+function Buttons(){
+  const setcount =useSetRecoilState(countAtom)
+  console.log("button re-rendered");
+return <div>
+  <button onClick={()=>{
+    setcount(c=>c+1)
+  }}>Increase</button>
+
+  <button onClick={()=>{
+    setcount(c=>c-1)
+}}>decrease</button>
+
+</div>
+}
+
+export default App
