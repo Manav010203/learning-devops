@@ -1,0 +1,34 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { RecoilRoot, useRecoilValue } from 'recoil'
+import { jobAtom, mesaageAtom, networkAtom, notificationAtom, totalnotigfication } from './assets/atoms'
+
+function App() {
+return <div>
+  <RecoilRoot>
+    <Mainapp />
+  </RecoilRoot>
+</div>
+}
+function Mainapp(){
+  const networknumber =useRecoilValue(networkAtom)
+  const jobsnumber = useRecoilValue(jobAtom)
+  const messagenumber =useRecoilValue(mesaageAtom)
+  const notificationsnumber = useRecoilValue(notificationAtom)
+  const totalnotificationcount =useRecoilValue(totalnotigfication)
+
+  return (
+    <>
+      <button>home</button>
+      <button>my network({networknumber>=100 ? "99+":networknumber})</button>
+      <button>jobs({jobsnumber>=100 ? "99+":jobsnumber})</button>
+      <button>messaging({messagenumber>=100?"99+":messagenumber})</button>
+      <button>notifications({notificationsnumber>=100?"99+":notificationsnumber})</button>
+      <button>me({totalnotificationcount})</button>
+      
+    </>
+  )
+}
+export default App
